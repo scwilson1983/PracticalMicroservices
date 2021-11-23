@@ -1,5 +1,4 @@
-obj/**
-bin/**
-.git/**
 .suo
 .vs/**
+**/bin/**
+**/obj/**

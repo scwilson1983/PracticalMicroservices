@@ -6,5 +6,8 @@
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PracticalMicroservices.Events\PracticalMicroservices.Events.csproj" />
+  </ItemGroup>
 
 </Project>
