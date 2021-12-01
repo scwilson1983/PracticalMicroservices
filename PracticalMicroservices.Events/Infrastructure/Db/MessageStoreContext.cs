@@ -33,7 +33,7 @@ namespace PracticalMicroservices.Events.Infrastructure.Db
             	@Type, 
             	@Data, 
             	@MetaData, 
-            	@ExpectedVersion
+            	null
             )";
             var parameters = new[] 
             { 
@@ -71,14 +71,14 @@ namespace PracticalMicroservices.Events.Infrastructure.Db
                     NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Jsonb,
                     NpgsqlValue = metaData,
                     ParameterName = "MetaData"
-                },
-                new NpgsqlParameter
-                {
-                    Direction = System.Data.ParameterDirection.Input,
-                    NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bigint,
-                    NpgsqlValue = expectedVersion,
-                    ParameterName = "ExpectedVersion"
                 }
+                //new NpgsqlParameter
+                //{
+                //    Direction = System.Data.ParameterDirection.Input,
+                //    NpgsqlDbType = NpgsqlTypes.NpgsqlDbType.Bigint,
+                //    NpgsqlValue = expectedVersion,
+                //    ParameterName = "ExpectedVersion"
+                //}
             };
             using(var command = Database.GetDbConnection().CreateCommand())
             {

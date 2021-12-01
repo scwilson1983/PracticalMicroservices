@@ -17,8 +17,9 @@ namespace PracticalMicroservices.Events.Services
         public long WriteMessage<T>(T entity, Guid id, long expectedVersion = -1)
         {
             var entityName = entity.GetType().Name;
+            var streamName = $"{entityName}-{id}";
             var data = JsonSerializer.Serialize(entity);
-           return _messageStoreContext.WriteMessage(id.ToString(), entityName, $"{entityName}Type", data, "{}", expectedVersion);
+           return _messageStoreContext.WriteMessage(Guid.NewGuid().ToString(), streamName, $"{entityName}Type", data, "{}", expectedVersion);
         }
     }
 }
