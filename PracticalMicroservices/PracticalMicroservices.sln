@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticalMicroservices", "P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticalMicroservices.Events", "..\PracticalMicroservices.Events\PracticalMicroservices.Events.csproj", "{2BA66429-09C0-4CF5-86CB-6500A80230B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticalMicroservices.Views", "..\PracticalMicroservices.Views\PracticalMicroservices.Views.csproj", "{7C89F7D7-BD8A-43BE-9055-FEB215A7EA62}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticalMicroservices.MaterializedViews", "..\PracticalMicroservices.Views\PracticalMicroservices.MaterializedViews.csproj", "{7C89F7D7-BD8A-43BE-9055-FEB215A7EA62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticalMicroservices.Domain", "..\PracticalMicroservices.Domain\PracticalMicroservices.Domain.csproj", "{C51C7FB5-2EF1-4922-8D1C-5D6DDBE53531}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7C89F7D7-BD8A-43BE-9055-FEB215A7EA62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C89F7D7-BD8A-43BE-9055-FEB215A7EA62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C89F7D7-BD8A-43BE-9055-FEB215A7EA62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C51C7FB5-2EF1-4922-8D1C-5D6DDBE53531}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C51C7FB5-2EF1-4922-8D1C-5D6DDBE53531}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C51C7FB5-2EF1-4922-8D1C-5D6DDBE53531}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C51C7FB5-2EF1-4922-8D1C-5D6DDBE53531}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
