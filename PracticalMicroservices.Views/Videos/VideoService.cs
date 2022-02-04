@@ -1,4 +1,5 @@
-﻿using PracticalMicroservices.MaterializedViews.Entities;
+﻿using PracticalMicroservices.Events.Entities;
+using PracticalMicroservices.MaterializedViews.Entities;
 using PracticalMicroservices.MaterializedViews.Infrastructure;
 using System.Linq;
 using System.Text.Json;
@@ -25,14 +26,16 @@ namespace PracticalMicroservices.MaterializedViews.Videos
             return data.VideosWatched;
         }
 
-        public void IncrementVideosViewed(long globalPosition)
+        public void IncrementVideosViewed(Message message)
         {
+            var globalPosition = message.GlobalPosition;
             var homePage = _viewsContext.Pages.FirstOrDefault(p => p.Name == "Home");
             if(homePage == null)
             {
                 var pageData = new VideoPageData
                 {
-                    VideosWatched = 1
+                    VideosWatched = 1,
+                    LastViewProcessed = globalPosition
                 };
                 homePage = new Page
                 {
@@ -41,15 +44,19 @@ namespace PracticalMicroservices.MaterializedViews.Videos
                     Data = JsonSerializer.Serialize(pageData) 
                 };
                 _viewsContext.Add(homePage);
+                _viewsContext.SaveChanges();
             }
             else
             {
                 var pageData = JsonSerializer.Deserialize<VideoPageData>(homePage.Data);
-                pageData.VideosWatched++;
-                homePage.Data = JsonSerializer.Serialize(pageData);
-                homePage.GlobalPosition = globalPosition;
+                if(pageData.LastViewProcessed < globalPosition)
+                {
+                    pageData.VideosWatched++;
+                    homePage.Data = JsonSerializer.Serialize(pageData);
+                    homePage.GlobalPosition = globalPosition;
+                    _viewsContext.SaveChanges();
+                }
             }
-            _viewsContext.SaveChanges();
         }
     }
 }

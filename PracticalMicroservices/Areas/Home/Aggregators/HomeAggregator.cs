@@ -3,22 +3,20 @@ using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using PracticalMicroservices.Events.Services;
 
-namespace PracticalMicroservices.Domain.Home
+namespace PracticalMicroservices.Home.Aggregators
 {
     public class HomeAggregator : IHostedService, IDisposable
     {
         readonly IVideoService _videoService;
+        readonly IMessageStore _messageStore;
         Timer _timer;
 
-        public HomeAggregator(IVideoService videoService)
+        public HomeAggregator(IVideoService videoService, IMessageStore messageStore)
         {
             _videoService = videoService;
-        }
-
-        public void IncrementVideosViewed(long globalPosition)
-        {
-            _videoService.IncrementVideosViewed(globalPosition);
+            _messageStore = messageStore;
         }
 
         public Task StartAsync(CancellationToken cancellationToken)
@@ -40,7 +38,11 @@ namespace PracticalMicroservices.Domain.Home
 
         void ProcessOutstandingEvents(object? state)
         {
-
+            var nextMessages = _messageStore.ReadMessages(new ReadMessageRequest());
+            foreach(var next in nextMessages)
+            {
+                _videoService.IncrementVideosViewed(next);
+            }
         }
     }
 }

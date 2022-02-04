@@ -1,6 +1,7 @@
 ﻿using PracticalMicroservices.Events.Entities;
 using PracticalMicroservices.Events.Infrastructure.Db;
 using System;
+using System.Collections.Generic;
 using System.Text.Json;
 
 namespace PracticalMicroservices.Events.Services
@@ -12,6 +13,11 @@ namespace PracticalMicroservices.Events.Services
         public MessageStore(MessageStoreContext messageStoreContext)
         {
             _messageStoreContext = messageStoreContext;
+        }
+
+        public IEnumerable<Message> ReadMessages(ReadMessageRequest request)
+        {
+            throw new NotImplementedException();
         }
 
         public long WriteMessage<T>(T entity, Guid id, long expectedVersion = -1)

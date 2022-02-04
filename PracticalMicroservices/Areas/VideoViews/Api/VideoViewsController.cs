@@ -30,9 +30,7 @@ namespace PracticalMicroservices.Areas.VideoRecording.Api
         [HttpPost]
         public IActionResult Create([FromBody] VideoView vm)
         {
-            VideoViewsVm.ViewCount++;
             var version = _messageStore.WriteMessage(VideoViewsVm, VideoViewsVm.Id);
-            _videoService.IncrementVideosViewed(version);
             return Ok();
         }
     }

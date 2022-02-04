@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using PracticalMicroservices.Events.Entities;
-using System;
 using System.Data;
 
 namespace PracticalMicroservices.Events.Infrastructure.Db
